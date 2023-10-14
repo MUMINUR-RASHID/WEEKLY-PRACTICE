@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-using namespacem std;
+using namespace std;
 int main()
 {
     
@@ -10,7 +10,7 @@ int main()
         cin>>a[i];
     }
 
-    int l=a.size();
+    int l=n;
     int j=0,i=0;
     long long int s=0;
     int an=0;
