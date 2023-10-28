@@ -7,19 +7,22 @@ int main()
     {
         float k,n;
         cin>>k>>n;
-        int l=1,i;
-        for(i=1;i<k;i++)
+        int l=1,dif=1;
+        for(int i=1;i<=k;i++)
         {
-            if(l>=n) 
-            {
-                l=l-i+2;
-                break;
-            }
             cout<<l<<" ";
-            l+=i;
+            if((n-(l+dif))>=(k-i-1))
+            {
+                l+=dif;
+                dif++;
+            }
+            else
+            {
+                l++;
+            }
+            
         }
-        for(int j=i;j<=k;j++)
-        cout<<l++<<" ";
+        
         cout<<endl;
 
     }

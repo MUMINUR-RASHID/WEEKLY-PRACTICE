@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 int main()
 {
     int t;
@@ -8,36 +9,35 @@ int main()
     {
         int n;
         cin >> n;
-        vector<int>v;
-        map<int,int>mp;
+        ll ar[n];
+        vector<pair<ll, ll>> v;
         for (int i = 0; i < n; i++)
         {
-            int x;
-            cin >> x;
-            v.push_back(x);
-            mp[x]++;
+            cin >> ar[i];
         }
-        int ma=INT_MIN;
-        for(auto v:mp)
+        sort(ar, ar+n, greater<ll>());
+        for (ll i = 0; i < n;)
         {
-            ma=max(v.second,ma);
+            ll j = i;
+            while (i < n && ar[i] == ar[j])
+            {
+                i++;
+            }
+            v.push_back({ar[j], i - j});
         }
-        sort(v.begin(),v.end());
-        pair<int,int>p={1,v[0]};
-        for(int i=1;i<n;i++)
+        
+        ll an = v[0].second;
+        for (int i = 1; i < v.size(); i++)
         {
-            if(abs(v[i]-p.second)>1)
+            if (v[i].first + 1 == v[i - 1].first)
             {
-                int m=p.first+1;
-                p={m,v[i]};
-
+                an = an + max(v[i].second - v[i - 1].second, 0ll);
             }
-            else if((v[i]-p.second)==1)
+            else
             {
-                int m=p.first;
-                p={m,v[i]};
+                an = an + v[i].second;
             }
         }
-        cout << max(p.first,ma) << endl;
+        cout << an << endl;
     }
 }
